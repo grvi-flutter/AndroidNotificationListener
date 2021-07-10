@@ -16,20 +16,20 @@ class NotificationExceptionV2 implements Exception {
 }
 
 class NotificationEventV2 {
-  String packageMessage;
-  String packageName;
-  String packageExtra;
-  String packageText;
-  DateTime timeStamp;
+  String? packageMessage;
+  String? packageName;
+  String? packageExtra;
+  String? packageText;
+  DateTime? timeStamp;
 
   NotificationEventV2({this.packageName, this.packageMessage, this.timeStamp , this.packageExtra , this.packageText});
 
   factory NotificationEventV2.fromMap(Map<dynamic, dynamic> map) {
     DateTime time = DateTime.now();
-    String name = map['packageName'];
-    String message = map['packageMessage'];
-    String text = map['packageText'];
-    String extra =  map['packageExtra'];
+    String? name = map['packageName'];
+    String? message = map['packageMessage'];
+    String? text = map['packageText'];
+    String? extra =  map['packageExtra'];
 
     return NotificationEventV2(packageName: name, packageMessage: message, timeStamp: time,packageText: text , packageExtra: extra);
   }
@@ -48,9 +48,9 @@ class AndroidNotificationListener {
   static const EventChannel _notificationEventChannel =
   EventChannel('notifications.eventChannel');
 
-  Stream<NotificationEventV2> _notificationStream;
+  Stream<NotificationEventV2>? _notificationStream;
 
-  Stream<NotificationEventV2> get notificationStream {
+  Stream<NotificationEventV2>? get notificationStream {
     if (Platform.isAndroid) {
 
       if (_notificationStream == null) {
